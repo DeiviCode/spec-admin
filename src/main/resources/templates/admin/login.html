@@ -1,10 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Login</title>
+	<link rel="stylesheet" type="text/css" th:href="@{css/admin.css}">
+	<div th:insert="~{layouts/css::css}"></div>
 </head>
 <body>
-
+	<div class="row center-xs container-fluid my-5">
+		<!-- Default form login -->
+		<form class="text-center border border-light p-5" th:action="@{/login}" method="post" style="width:500px">
+			<img  id="logo" class="my-2" width="120" height="120" alt="Logo SPEC" th:src="@{images/logosemillero.png}">
+		    <h3 class="mb-4">Base de datos de radiación solar del Área Metropolitana de Bucaramanga</h3>
+		
+		    <!-- Email -->
+		    <input type="text" id="username" name="username" class="form-control mb-4" placeholder="Usuario" required="required">
+		
+		    <!-- Password -->
+		    <input type="password" id="password" name="password" class="form-control mb-4" placeholder="Contraseña" required="required">
+		
+		    <!-- Sign in button -->
+		    <button class="btn btn-info btn-block " type="submit">Iniciar sesión</button>
+		    
+		    <div th:if="${param.error}" class="alert alert-error">    
+                 <div class="alert alert-danger" role="alert">
+					  Credenciales incorrectas
+				</div>
+            </div>
+            <div th:if="${param.logout}" class="alert alert-success"> 
+                 <div class="alert alert-danger" role="alert">
+					 Ha cerrado sesión.
+				</div>
+            </div>
+		
+		</form>
+		<!-- Default form login -->
+	</div>
+	<div th:insert="~{layouts/js::js}"></div>
 </body>
 </html>
