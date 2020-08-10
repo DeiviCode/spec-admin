@@ -1,10 +1,35 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<!doctype html>
+<html lang="en">
 
+<head>
+  <title>Panel de administración</title>
+  <!-- Required meta tags -->
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <div th:insert="~{layouts/mdbcss::mdbcss}"></div>
+</head>
+
+<body>
+  <div class="wrapper ">
+    
+    <!-- Sidebar -->
+     <div th:insert="~{layouts/sidebar::sidebar}"></div>
+    
+    <div class="main-panel">
+	  <!-- Navbar -->
+      <div th:insert="~{layouts/nav::navbar}"></div>
+    
+	  <!-- Content -->
+      <div class="content">
+        <div class="container-fluid">
+          <!-- your content here -->
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
 </body>
+<div th:insert="~{layouts/mdbjs::mdbjs}"></div>
 </html>
