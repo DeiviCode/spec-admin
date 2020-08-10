@@ -8,11 +8,14 @@ import javax.persistence.Query;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.opencsv.CSVWriter;
@@ -22,9 +25,16 @@ import com.opencsv.bean.StatefulBeanToCsvBuilder;
 import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 import com.solar.model.Estacion;
+import com.solar.model.IsantandService;
+import com.solar.model.Municipio;
+import com.solar.model.Provedor;
 import com.solar.model.RadiacionInfo;
 import com.solar.service.EstacionServiceIMPL;
+import com.solar.service.MunicipioServiceIMPL;
+import com.solar.service.ProvedorServiceIMPL;
+import com.solar.service.RadiacionServiceIMPL;
 import com.solar.service.UserServiceImpl;
+import com.solar.task.WundergroundService;
 
 
 @Controller
@@ -41,6 +51,14 @@ public class UserController {
 	@Autowired
 	private EstacionServiceIMPL estacionServiceIMPL;
 	
+	@Autowired
+	private MunicipioServiceIMPL municipioServiceIMPL;
+	
+	@Autowired
+	private ProvedorServiceIMPL provedorServiceIMPL;
+	
+	@Autowired
+	private RadiacionServiceIMPL radiacionServiceIMPL;
 	
 	@GetMapping("/login")
 	public String login() {
@@ -80,7 +98,21 @@ public class UserController {
 	@GetMapping("/")
 	public String home(Model model) {
 		model.addAttribute("estaciones", this.getEstaciones());
-		return "admin/import";
+		model.addAttribute("municipios", this.getMunicipios());
+		model.addAttribute("origenes", this.getProvedores());
+		
+		String uri_30 = "https://api.weather.com/v2/pws/observations/all/1day?stationId=ISANTAND30&format=json&units=e&apiKey=b3bc2e2c48a644b6bc2e2c48a614b691";
+		String uri_31 = "https://api.weather.com/v2/pws/observations/all/1day?stationId=ISANTAND31&format=json&units=e&apiKey=b3bc2e2c48a644b6bc2e2c48a614b691";
+		RestTemplate restTemplate = new RestTemplate();
+		
+		HttpStatus status_30 = restTemplate.exchange(uri_30, HttpMethod.GET,null, WundergroundService.class).getStatusCode();
+		HttpStatus status_31 = restTemplate.exchange(uri_31, HttpMethod.GET,null, WundergroundService.class).getStatusCode();
+		
+		model.addAttribute("status_is30", (status_30.equals(HttpStatus.OK)) ? "Online":"Offline");
+		model.addAttribute("status_is31",  (status_31.equals(HttpStatus.OK)) ? "Online":"Offline");
+		model.addAttribute("registros",  radiacionServiceIMPL.getRegistros());
+		
+		return "admin/inicio";
 	}
 	
 	@GetMapping("/download")
@@ -129,6 +161,15 @@ public class UserController {
 	private List<Estacion> getEstaciones() {
 		return estacionServiceIMPL.list();
 	}
+	
+	private List<Municipio> getMunicipios() {
+		return municipioServiceIMPL.list();
+	}
+	
+	private List<Provedor> getProvedores() {
+		return provedorServiceIMPL.list();
+	}
+	
 	
 
 	

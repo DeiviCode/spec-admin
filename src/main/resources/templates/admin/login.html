@@ -22,15 +22,11 @@
 		    <!-- Sign in button -->
 		    <button class="btn btn-info btn-block " type="submit">Iniciar sesión</button>
 		    
-		    <div th:if="${param.error}" class="alert alert-error">    
-                 <div class="alert alert-danger" role="alert">
-					  Credenciales incorrectas
-				</div>
+		    <div th:if="${param.error}" class="alert alert-danger mt-2" role="alert">    
+                 Credenciales incorrectas
             </div>
-            <div th:if="${param.logout}" class="alert alert-success"> 
-                 <div class="alert alert-danger" role="alert">
-					 Ha cerrado sesión.
-				</div>
+            <div th:if="${param.logout}" class="alert alert-info mt-2" role="alert"> 
+                 Ha cerrado sesión.
             </div>
 		
 		</form>
