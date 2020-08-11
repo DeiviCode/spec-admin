@@ -21,9 +21,10 @@
       <div th:insert="~{layouts/nav::navbar}"></div>
     
 	  <!-- Content -->
-      <div class="content">
-        <div class="container-fluid">
-          <div th:insert="~{layouts/dashboard::dashboard}"></div>
+      <div class="content" >
+        <div class="container-fluid" layout:fragment="content">
+			<!-- <div th:insert="~{layouts/dashboard::dashboard}"></div> -->
+			
         </div>
       </div>
       

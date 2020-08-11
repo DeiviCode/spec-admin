@@ -40,4 +40,9 @@ public class MunicipioServiceIMPL implements MunicipioService {
 		 municipioRepository.deleteById(id);
 	}
 
+	@Override
+	public long getLength() {
+		return municipioRepository.count();
+	}
+
 }

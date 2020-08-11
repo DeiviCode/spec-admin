@@ -21,8 +21,11 @@ public class RadiacionServiceIMPL implements RadiacionService {
 	public Radiacion save(Estacion estacion, Double valor_radiacion, Timestamp fecha) {
 		return radiacionRepository.save(new Radiacion(estacion, valor_radiacion, fecha));
 	}
-	
-	public long getRegistros() {
+
+	@Override
+	public long getLength() {
 		return radiacionRepository.count();
 	}
+	
+	
 }

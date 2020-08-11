@@ -10,4 +10,5 @@ public interface MunicipioService {
 	public Municipio findByNombre(String nombre);
 	public Municipio findById(Long id);
 	public void removeById(Long nombre);
+	public long getLength();
 }

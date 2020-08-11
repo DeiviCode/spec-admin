@@ -40,6 +40,11 @@ public class ProvedorServiceIMPL implements ProvedorService{
 		provedorRepository.deleteById(id);
 		
 	}
+
+	@Override
+	public long getLength() {
+		return provedorRepository.count();
+	}
 	
 	
 }

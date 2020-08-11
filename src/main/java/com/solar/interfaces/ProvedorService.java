@@ -10,4 +10,5 @@ public interface ProvedorService {
 	public Provedor findByNombre(String nombre);
 	public Provedor findById(Long id);
 	public void removeById(Long id);
+	public long getLength();
 }

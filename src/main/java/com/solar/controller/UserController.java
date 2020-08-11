@@ -98,8 +98,6 @@ public class UserController {
 	@GetMapping("/")
 	public String home(Model model) {
 		model.addAttribute("estaciones", this.getEstaciones());
-		model.addAttribute("municipios", this.getMunicipios());
-		model.addAttribute("origenes", this.getProvedores());
 		
 		String uri_30 = "https://api.weather.com/v2/pws/observations/all/1day?stationId=ISANTAND30&format=json&units=e&apiKey=b3bc2e2c48a644b6bc2e2c48a614b691";
 		String uri_31 = "https://api.weather.com/v2/pws/observations/all/1day?stationId=ISANTAND31&format=json&units=e&apiKey=b3bc2e2c48a644b6bc2e2c48a614b691";
@@ -110,9 +108,12 @@ public class UserController {
 		
 		model.addAttribute("status_is30", (status_30.equals(HttpStatus.OK)) ? "Online":"Offline");
 		model.addAttribute("status_is31",  (status_31.equals(HttpStatus.OK)) ? "Online":"Offline");
-		model.addAttribute("registros",  radiacionServiceIMPL.getRegistros());
+		model.addAttribute("registros",  radiacionServiceIMPL.getLength());
+		model.addAttribute("estaciones_length",  estacionServiceIMPL.getLength());
+		model.addAttribute("municipios_length",  municipioServiceIMPL.getLength());
+		model.addAttribute("origenes_length", provedorServiceIMPL.getLength());
 		
-		return "admin/inicio";
+		return "admin/dashboard";
 	}
 	
 	@GetMapping("/download")
@@ -154,26 +155,8 @@ public class UserController {
 	}
 	
 	
-	
-	
-	
-	
 	private List<Estacion> getEstaciones() {
 		return estacionServiceIMPL.list();
 	}
-	
-	private List<Municipio> getMunicipios() {
-		return municipioServiceIMPL.list();
-	}
-	
-	private List<Provedor> getProvedores() {
-		return provedorServiceIMPL.list();
-	}
-	
-	
-
-	
-
-
 	
 }

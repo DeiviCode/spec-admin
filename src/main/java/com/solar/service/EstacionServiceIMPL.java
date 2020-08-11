@@ -43,5 +43,10 @@ public class EstacionServiceIMPL implements EstacionService {
 		
 	}
 
+	@Override
+	public long getLength() {
+		return estacionRepository.count();
+	}
+
 
 }

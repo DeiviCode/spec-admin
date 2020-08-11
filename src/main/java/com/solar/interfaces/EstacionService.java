@@ -10,4 +10,5 @@ public interface EstacionService {
 	public Estacion findByNombre_estacion(String nombre_estacion);
 	public Estacion findById(Integer id);
 	public void removeById(Integer id);
+	public long getLength();
 }
