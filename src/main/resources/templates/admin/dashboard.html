@@ -86,6 +86,7 @@
 						   		   th:label="${estacion.getNomber()}">
 						   </option>
 						</select>
+						<p>¿No encuentras la estación? <a href="/estaciones">registra una nueva</a></p>
 						
 	                </div>
 	                
@@ -200,23 +201,23 @@
 						          </div>
 				
 							<!--Estado estaciones -->
-							 <div class="card ">
-				                <div class="card-header card-header-primary">
-				                  <h4 class="card-title">Estado de las estaciones de la plataforma wunderground</h4>
-				                </div>
+<!-- 							 <div class="card "> -->
+<!-- 				                <div class="card-header card-header-primary"> -->
+<!-- 				                  <h4 class="card-title">Estado de las estaciones de la plataforma wunderground</h4> -->
+<!-- 				                </div> -->
 				                
-				                <div class="card-body">
-				                  <h4 class="card-title">Isantand 30 
-				                  	<span th:if="${status_is30=='Online'}" th:text="${status_is30}" class="badge badge-success"></span>
-				                  	<span th:unless="${status_is30=='Online'}" th:text="${status_is30}" class="badge badge-danger"></span>
-				                  </h4>
-				                  <h4 class="card-title">Isantand 31 
-				                  	<span th:if="${status_is31=='Online'}" th:text="${status_is31}" class="badge badge-success"></span>
-				                  	<span th:unless="${status_is31=='Online'}" th:text="${status_is31}" class="badge badge-danger"></span>
-				                  </h4>
-				                </div>
+<!-- 				                <div class="card-body"> -->
+<!-- 				                  <h4 class="card-title">Isantand 30  -->
+<!-- 				                  	<span th:if="${status_is30=='Online'}" th:text="${status_is30}" class="badge badge-success"></span> -->
+<!-- 				                  	<span th:unless="${status_is30=='Online'}" th:text="${status_is30}" class="badge badge-danger"></span> -->
+<!-- 				                  </h4> -->
+<!-- 				                  <h4 class="card-title">Isantand 31  -->
+<!-- 				                  	<span th:if="${status_is31=='Online'}" th:text="${status_is31}" class="badge badge-success"></span> -->
+<!-- 				                  	<span th:unless="${status_is31=='Online'}" th:text="${status_is31}" class="badge badge-danger"></span> -->
+<!-- 				                  </h4> -->
+<!-- 				                </div> -->
 				                
-				      		</div>	
+<!-- 				      		</div>	 -->
 					</div>
 				  </div>
 		</div>
