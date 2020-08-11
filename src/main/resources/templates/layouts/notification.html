@@ -1,0 +1,26 @@
+<script id="notification" th:fragment="notification" th:inline="javascript">
+	/*<![CDATA[*/
+	
+	    var message = /*[[${error}]]*/ 'default';
+	    var ok = /*[[${ok}]]*/ 'default';
+	    
+	    if(message != null) {
+	    	$.notify({
+	    		message: message 
+	    	},{
+	    		// settings
+	    		type: 'danger'
+	    	});
+	    }
+	    
+	    if(ok != null) {
+	    	$.notify({
+	    		message: ok
+	    	},{
+	    		// settings
+	    		type: 'success'
+	    	});
+	    }
+	
+	/*]]>*/
+</script>

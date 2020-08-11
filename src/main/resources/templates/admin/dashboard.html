@@ -7,140 +7,259 @@
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <link rel="stylesheet" type="text/css" th:href="@{css/loader.css}">
   <div th:insert="~{layouts/mdbcss::mdbcss}"></div>
 </head>
 
 <body>
-  <div class="wrapper ">
-    
-    <!-- Sidebar -->
-     <div th:insert="~{layouts/sidebar::sidebar}"></div>
-    
-    <div class="main-panel">
-	  <!-- Navbar -->
-      <div th:insert="~{layouts/nav::navbar}"></div>
-    
-	  <!-- Content -->
-      <div class="content" >
-        <div class="container-fluid">
-			<div layout:fragment="content">
-				<!-- Estadisticas -->
-				<div class="row">
-			            <div class="col-lg-3 col-md-6 col-sm-6">
-			              <div class="card card-stats">
-			                <div class="card-header card-header-warning card-header-icon">
-			                  <div class="card-icon">
-			                    <i class="material-icons">store</i>
-			                  </div>
-			                  <p class="card-category">Orígenes</p>
-			                  <h3 class="card-title mb-2">Total: <span th:text=${origenes_length}>2</span></h3>
-			                </div>
-			              </div>
-			            </div>
-			            
-			            <div class="col-lg-3 col-md-6 col-sm-6">
-			              <div class="card card-stats">
-			                <div class="card-header card-header-success card-header-icon">
-			                  <div class="card-icon">
-			                    <i class="material-icons">room</i>
-			                  </div>
-			                  <p class="card-category">Municipios</p>
-			                   <h3 class="card-title mb-2">Total: <span th:text=${municipios_length}></span></h3>
-			                </div>
-			              </div>
-			            </div>
-			            
-			            <div class="col-lg-3 col-md-6 col-sm-6">
-			              <div class="card card-stats">
-			                <div class="card-header card-header-danger card-header-icon">
-			                  <div class="card-icon">
-			                    <i class="material-icons">wb_sunny</i>
-			                  </div>
-			                  <p class="card-category">Estaciones</p>
-			                   <h3 class="card-title mb-2">Total: <span th:text=${estaciones_length}></span></h3>
-			                </div>
-			              </div>
-			            </div>
-			            
-			            <div class="col-lg-3 col-md-6 col-sm-6">
-			              <div class="card card-stats">
-			                <div class="card-header card-header-info card-header-icon">
-			                 <div class="card-icon">
-			                    <i class="material-icons">list</i>
-			                  </div>
-			                  <p class="card-category">Registros</p>
-			                  <h3 th:text="${registros}" class="card-title mb-2">+800k</h3>
-			                </div>
-			              </div>
-			            </div>
-			          </div>
-			
-						<!--Opciones -->
-						<div class="row">
-					            <div class="col-md-6">
-					              <div class="card ">
-					                <div class="card-header card-header-success">
-					                  <h4 class="card-title">Importación de datos</h4>
-					                </div>
-					                
-					                <div class="card-body">
-					                  <h4 class="card-title">Suba al sistema de información datos de radiación solar
-					                  mediante un archivo csv que cumpla con la estrutura indicada.
-					                  </h4>
-					                </div>
-					                
-					                <div class="card-footer">
-					                  <button class="btn btn-success btn-round"><i class="material-icons mr-2">cloud_upload</i> Importar</button>
-					                </div>
-					                
-					              </div>
-					            </div>
-					            
-					            <div class="col-md-6">
-					              <div class="card ">
-					                <div class="card-header card-header-warning">
-					                  <h4 class="card-title">Exportación de datos</h4>
-					                </div>
-					                
-					                <div class="card-body">
-					                  <h4 class="card-title">Descargue los el conjunto completo de datos de rediación solar que  estan almacenados
-					                  o seleccione una estación específica
-					                  </h4>
-					                </div>
-					                
-					                <div class="card-footer">
-					                  <button class="btn btn-warning btn-round"><i class="material-icons mr-2">cloud_download</i> Exportar</button>
-					                </div>
-					                
-					              </div>
-					            </div>
-					            
-					          </div>
-			
-						<!--Estado estaciones -->
-						 <div class="card ">
-			                <div class="card-header card-header-primary">
-			                  <h4 class="card-title">Estado de las estaciones de la plataforma wunderground</h4>
-			                </div>
-			                
-			                <div class="card-body">
-			                  <h4 class="card-title">Isantand 30 
-			                  	<span th:if="${status_is30=='Online'}" th:text="${status_is30}" class="badge badge-success"></span>
-			                  	<span th:unless="${status_is30=='Online'}" th:text="${status_is30}" class="badge badge-danger"></span>
-			                  </h4>
-			                  <h4 class="card-title">Isantand 31 
-			                  	<span th:if="${status_is31=='Online'}" th:text="${status_is31}" class="badge badge-success"></span>
-			                  	<span th:unless="${status_is31=='Online'}" th:text="${status_is31}" class="badge badge-danger"></span>
-			                  </h4>
-			                </div>
-			                
-			      		</div>	
-				</div>
+  	<div class="wrapper ">
+	    
+	    <!-- Sidebar -->
+	     <div th:insert="~{layouts/sidebar::sidebar}"></div>
+	    
+	    <div class="main-panel">
+		  <!-- Navbar -->
+	      <div th:insert="~{layouts/nav::navbar}"></div>
+	    
+		  <!-- Content -->
+	      <div class="content" >
+	        <div class="container-fluid">
+
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog  modal-lg" role="document">
+    <div class="modal-content">
+      <div class="card  card-plain">
+        <div class="modal-header">
+          <h3 class="modal-title card-title text-muted ml-auto">Importación de datos</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <i class="material-icons">clear</i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-5">
+              <div class="alert alert-info" role="alert">
+				  <p>Elarchivo debe cumplir con las siguientes características.</p>
+				  <ul>
+				  	<li>
+				  		Formato csv separado por punto y coma (;).
+				  	</li>
+				  	<li>
+				  		Pesar máximo 10 MB.
+				  	</li>
+				  	<li>
+				  		No debe contener cabeceras.
+				  	</li>
+				  	<li>
+				  		La primera columna debe contener la fecha en uno de los formatos de 24 horas definidos.
+				  	</li>
+				  	<li>
+				  		La segunda columna debe contener el valor de la radiación.
+				  	</li>
+				  </ul>
 			  </div>
-			</div>
+            </div>
+
+            <div class="col-md-6 ">
+              <form id="importForm" class="form" th:action="@{/import}" method="post" enctype="multipart/form-data">
+	                <div class="card-body">
+		                <div class="file-field">
+						    <div class="btn btn-default btn-md float-left">
+						      <input required="required" type="file" name="file">
+						    </div>
+						 </div>
+	
+						<select required class="browser-default custom-select mb-2" name="format">
+						   <option value="" >Seleccione un formato de fecha</option>
+						   <option value="DD/MM/YYYY" label="DD/MM/YYYY"></option>
+						   <option value="DD/MM/YYYY hh:mm" label="DD/MM/YYYY hh:mm"></option>
+						   <option value="DD/MM/YYYY hh:mm" label="DD/MM/YYYY hh:mm:ss"></option>
+						   <option value="YYYY/MM/DD" label="YYYY/MM/DD"></option>
+						   <option value="YYYY/MM/DD hh:mm" label="YYYY/MM/DD hh:mm"></option>
+						   <option value="YYYY/MM/DD hh:mm:ss" label="YYYY/MM/DD hh:mm:ss"></option>
+						</select>
+						
+	               		<select  required class="browser-default custom-select" name="estacion">
+						   <option value = "">Seleccione una estación</option>
+						   <option value = "d">Seleccione una estación</option>
+						   <option th:each="estacion: ${estaciones}" th:value="${estacion.getNomber()}"
+						   		   th:label="${estacion.getNomber()}">
+						   </option>
+						</select>
+						
+	                </div>
+	                
+					<!-- loader -->
+	                <div id="loader" style="display: none;" class="text-center my-1">
+	                	<div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+	                </div>
+	                
+	            
+		             <div class="text-center">
+		              <button type="submit" onclick="showLoader()" class="btn btn-success btn-round">Importar</button>
+		            </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+	        		
+					<!-- Estadisticas -->
+					<div class="row">
+				            <div class="col-lg-3 col-md-6 col-sm-6">
+				              <div class="card card-stats">
+				                <div class="card-header card-header-warning card-header-icon">
+				                  <div class="card-icon">
+				                    <i class="material-icons">store</i>
+				                  </div>
+				                  <p class="card-category">Orígenes</p>
+				                  <h3 class="card-title mb-2">Total: <span th:text=${origenes_length}>2</span></h3>
+				                </div>
+				              </div>
+				            </div>
+				            
+				            <div class="col-lg-3 col-md-6 col-sm-6">
+				              <div class="card card-stats">
+				                <div class="card-header card-header-success card-header-icon">
+				                  <div class="card-icon">
+				                    <i class="material-icons">room</i>
+				                  </div>
+				                  <p class="card-category">Municipios</p>
+				                   <h3 class="card-title mb-2">Total: <span th:text=${municipios_length}></span></h3>
+				                </div>
+				              </div>
+				            </div>
+				            
+				            <div class="col-lg-3 col-md-6 col-sm-6">
+				              <div class="card card-stats">
+				                <div class="card-header card-header-danger card-header-icon">
+				                  <div class="card-icon">
+				                    <i class="material-icons">wb_sunny</i>
+				                  </div>
+				                  <p class="card-category">Estaciones</p>
+				                   <h3 class="card-title mb-2">Total: <span th:text=${estaciones_length}></span></h3>
+				                </div>
+				              </div>
+				            </div>
+				            
+				            <div class="col-lg-3 col-md-6 col-sm-6">
+				              <div class="card card-stats">
+				                <div class="card-header card-header-info card-header-icon">
+				                 <div class="card-icon">
+				                    <i class="material-icons">list</i>
+				                  </div>
+				                  <p class="card-category">Registros</p>
+				                  <h3 th:text="${registros}" class="card-title mb-2">+800k</h3>
+				                </div>
+				              </div>
+				            </div>
+				          </div>
+				
+							<!--Opciones -->
+							<div class="row">
+						            <div class="col-md-6">
+						              <div class="card ">
+						                <div class="card-header card-header-success">
+						                  <h4 class="card-title">Importación de datos</h4>
+						                </div>
+						                
+						                <div class="card-body">
+						                  <h4 class="card-title">Suba al sistema de información datos de radiación solar
+						                  mediante un archivo csv que cumpla con la estrutura indicada.
+						                  </h4>
+						                </div>
+						                <div class="card-footer">
+						                  <button class="btn btn-round btn-success" data-toggle="modal" data-target="#signupModal" ><i class="material-icons mr-2">cloud_upload</i> Importar</button>
+						                </div>
+						                
+						              </div>
+						            </div>
+						            
+						            <div class="col-md-6">
+						              <div class="card ">
+						                <div class="card-header card-header-warning">
+						                  <h4 class="card-title">Exportación de datos</h4>
+						                </div>
+						                
+						                <div class="card-body">
+						                  <h4 class="card-title">Descargue los el conjunto completo de datos de rediación solar que  estan almacenados
+						                  o seleccione una estación específica
+						                  </h4>
+						                </div>
+						                
+						                <div class="card-footer">
+						                  <button class="btn btn-warning btn-round"><i class="material-icons mr-2">cloud_download</i> Exportar</button>
+						                </div>
+						                
+						              </div>
+						            </div>
+						            
+						          </div>
+				
+							<!--Estado estaciones -->
+							 <div class="card ">
+				                <div class="card-header card-header-primary">
+				                  <h4 class="card-title">Estado de las estaciones de la plataforma wunderground</h4>
+				                </div>
+				                
+				                <div class="card-body">
+				                  <h4 class="card-title">Isantand 30 
+				                  	<span th:if="${status_is30=='Online'}" th:text="${status_is30}" class="badge badge-success"></span>
+				                  	<span th:unless="${status_is30=='Online'}" th:text="${status_is30}" class="badge badge-danger"></span>
+				                  </h4>
+				                  <h4 class="card-title">Isantand 31 
+				                  	<span th:if="${status_is31=='Online'}" th:text="${status_is31}" class="badge badge-success"></span>
+				                  	<span th:unless="${status_is31=='Online'}" th:text="${status_is31}" class="badge badge-danger"></span>
+				                  </h4>
+				                </div>
+				                
+				      		</div>	
+					</div>
+				  </div>
 		</div>
-	 </div>
-	 
+	</div>
+	<div th:insert="~{layouts/mdbjs::mdbjs}"></div>
+	<div th:insert="~{layouts/notification::notification}"></div>
+	<script>
+		function showLoader() {
+			if ($('#importForm').is(':invalid') == 0) {
+				document.getElementById("loader").style.display = "block";
+			}
+		}
+	</script>
+	<script  th:inline="javascript">
+		/*<![CDATA[*/
+		
+		    var i30 = /*[[${status_is30}]]*/ 'default';
+		    var i31 = /*[[${status_is31}]]*/ 'default';
+		    
+		    if(i30 == "Offline") {
+		    	$.notify({
+		    		message: "La estación ISANTAND30 no esta disponible" 
+		    	},{
+		    		// settings
+		    		type: 'danger'
+		    	});
+		    }
+		    
+		    if(i31 == "Offline") {
+		    	$.notify({
+		    		message: "La estación ISANTAND31 no esta disponible" 
+		    	},{
+		    		// settings
+		    		type: 'danger'
+		    	});
+		    }
+		    
+		   
+		
+		/*]]>*/
+	</script>
+	
+	
 </body>
-<div th:insert="~{layouts/mdbjs::mdbjs}"></div>
+	
 </html>
