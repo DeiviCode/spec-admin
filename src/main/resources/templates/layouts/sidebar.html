@@ -14,26 +14,26 @@
       
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item active  ">
-            <a class="nav-link" href="#0">
+          <li class="nav-item" th:classappend="${#httpServletRequest.requestURI} == '/' ? active : ''">
+            <a class="nav-link" href="/">
               <i class="material-icons">home</i>
               <p>Inicio</p>
             </a>
           </li>
-           <li class="nav-item">
-            <a class="nav-link" href="#0">
+           <li class="nav-item" th:classappend="${#httpServletRequest.requestURI} == '/origenes' ? active : '' ">
+            <a class="nav-link" href="/origenes">
               <i class="material-icons">store</i>
               <p>Orígenes</p>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#0">
+          <li class="nav-item" th:classappend="${#httpServletRequest.requestURI} == '/municipios' ? active : '' ">
+            <a class="nav-link" href="/municipios">
               <i class="material-icons">room</i>
               <p>Municipios</p>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#0">
+          <li class="nav-item" th:classappend="${#httpServletRequest.requestURI} == '/estaciones' ? active : '' ">
+            <a class="nav-link" href="/estaciones">
               <i class="material-icons">wb_sunny</i>
               <p>Estaciones</p>
             </a>

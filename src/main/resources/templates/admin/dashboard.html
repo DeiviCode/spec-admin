@@ -1,7 +1,5 @@
 <!doctype html>
-<html lang="en"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorator="base/base.html">
+<html lang="en">
 
 <head>
   <title>Panel de administración</title>
@@ -9,119 +7,140 @@
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <div th:insert="~{layouts/mdbcss::mdbcss}"></div>
 </head>
 
 <body>
-<div layout:fragment="content">
-	<!-- Estadisticas -->
-	<div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-header card-header-warning card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">store</i>
-                  </div>
-                  <p class="card-category">Orígenes</p>
-                  <h3 class="card-title mb-2">Total: <span th:text=${origenes_length}>2</span></h3>
-                </div>
-              </div>
-            </div>
-            
-            <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-header card-header-success card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">room</i>
-                  </div>
-                  <p class="card-category">Municipios</p>
-                   <h3 class="card-title mb-2">Total: <span th:text=${municipios_length}></span></h3>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-header card-header-danger card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">wb_sunny</i>
-                  </div>
-                  <p class="card-category">Estaciones</p>
-                   <h3 class="card-title mb-2">Total: <span th:text=${estaciones_length}></span></h3>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-header card-header-info card-header-icon">
-                 <div class="card-icon">
-                    <i class="material-icons">list</i>
-                  </div>
-                  <p class="card-category">Registros</p>
-                  <h3 th:text="${registros}" class="card-title mb-2">+800k</h3>
-                </div>
-              </div>
-            </div>
-          </div>
-
-	<!--Opciones -->
-	<div class="row">
-            <div class="col-md-6">
-              <div class="card ">
-                <div class="card-header card-header-success">
-                  <h4 class="card-title">Importación de datos</h4>
-                </div>
-                
-                <div class="card-body">
-                  <h4 class="card-title">Suba al sistema de información datos de radiación solar
-                  mediante un archivo csv que cumpla con la estrutura indicada.
-                  </h4>
-                </div>
-                
-                <div class="card-footer">
-                  <button class="btn btn-success btn-round"><i class="material-icons mr-2">cloud_upload</i> Importar</button>
-                </div>
-                
-              </div>
-            </div>
-            
-            <div class="col-md-6">
-              <div class="card ">
-                <div class="card-header card-header-warning">
-                  <h4 class="card-title">Exportación de datos</h4>
-                </div>
-                
-                <div class="card-body">
-                  <h4 class="card-title">Descargue los el conjunto completo de datos de rediación solar que  estan almacenados
-                  o seleccione una estación específica
-                  </h4>
-                </div>
-                
-                <div class="card-footer">
-                  <button class="btn btn-warning btn-round"><i class="material-icons mr-2">cloud_download</i> Exportar</button>
-                </div>
-                
-              </div>
-            </div>
-            
-          </div>
-
-	<!--Estado estaciones -->
-	 <div class="card ">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title">Estado de las estaciones de la plataforma wunderground</h4>
-                </div>
-                
-                <div class="card-body">
-                  <h4 class="card-title">Isantand 30 
-                  	<span th:if="${status_is30=='Online'}" th:text="${status_is30}" class="badge badge-success"></span>
-                  	<span th:unless="${status_is30=='Online'}" th:text="${status_is30}" class="badge badge-danger"></span>
-                  </h4>
-                  <h4 class="card-title">Isantand 31 
-                  	<span th:if="${status_is31=='Online'}" th:text="${status_is31}" class="badge badge-success"></span>
-                  	<span th:unless="${status_is31=='Online'}" th:text="${status_is31}" class="badge badge-danger"></span>
-                  </h4>
-                </div>
-                
-      </div>	
-</div>
+  <div class="wrapper ">
+    
+    <!-- Sidebar -->
+     <div th:insert="~{layouts/sidebar::sidebar}"></div>
+    
+    <div class="main-panel">
+	  <!-- Navbar -->
+      <div th:insert="~{layouts/nav::navbar}"></div>
+    
+	  <!-- Content -->
+      <div class="content" >
+        <div class="container-fluid">
+			<div layout:fragment="content">
+				<!-- Estadisticas -->
+				<div class="row">
+			            <div class="col-lg-3 col-md-6 col-sm-6">
+			              <div class="card card-stats">
+			                <div class="card-header card-header-warning card-header-icon">
+			                  <div class="card-icon">
+			                    <i class="material-icons">store</i>
+			                  </div>
+			                  <p class="card-category">Orígenes</p>
+			                  <h3 class="card-title mb-2">Total: <span th:text=${origenes_length}>2</span></h3>
+			                </div>
+			              </div>
+			            </div>
+			            
+			            <div class="col-lg-3 col-md-6 col-sm-6">
+			              <div class="card card-stats">
+			                <div class="card-header card-header-success card-header-icon">
+			                  <div class="card-icon">
+			                    <i class="material-icons">room</i>
+			                  </div>
+			                  <p class="card-category">Municipios</p>
+			                   <h3 class="card-title mb-2">Total: <span th:text=${municipios_length}></span></h3>
+			                </div>
+			              </div>
+			            </div>
+			            
+			            <div class="col-lg-3 col-md-6 col-sm-6">
+			              <div class="card card-stats">
+			                <div class="card-header card-header-danger card-header-icon">
+			                  <div class="card-icon">
+			                    <i class="material-icons">wb_sunny</i>
+			                  </div>
+			                  <p class="card-category">Estaciones</p>
+			                   <h3 class="card-title mb-2">Total: <span th:text=${estaciones_length}></span></h3>
+			                </div>
+			              </div>
+			            </div>
+			            
+			            <div class="col-lg-3 col-md-6 col-sm-6">
+			              <div class="card card-stats">
+			                <div class="card-header card-header-info card-header-icon">
+			                 <div class="card-icon">
+			                    <i class="material-icons">list</i>
+			                  </div>
+			                  <p class="card-category">Registros</p>
+			                  <h3 th:text="${registros}" class="card-title mb-2">+800k</h3>
+			                </div>
+			              </div>
+			            </div>
+			          </div>
+			
+						<!--Opciones -->
+						<div class="row">
+					            <div class="col-md-6">
+					              <div class="card ">
+					                <div class="card-header card-header-success">
+					                  <h4 class="card-title">Importación de datos</h4>
+					                </div>
+					                
+					                <div class="card-body">
+					                  <h4 class="card-title">Suba al sistema de información datos de radiación solar
+					                  mediante un archivo csv que cumpla con la estrutura indicada.
+					                  </h4>
+					                </div>
+					                
+					                <div class="card-footer">
+					                  <button class="btn btn-success btn-round"><i class="material-icons mr-2">cloud_upload</i> Importar</button>
+					                </div>
+					                
+					              </div>
+					            </div>
+					            
+					            <div class="col-md-6">
+					              <div class="card ">
+					                <div class="card-header card-header-warning">
+					                  <h4 class="card-title">Exportación de datos</h4>
+					                </div>
+					                
+					                <div class="card-body">
+					                  <h4 class="card-title">Descargue los el conjunto completo de datos de rediación solar que  estan almacenados
+					                  o seleccione una estación específica
+					                  </h4>
+					                </div>
+					                
+					                <div class="card-footer">
+					                  <button class="btn btn-warning btn-round"><i class="material-icons mr-2">cloud_download</i> Exportar</button>
+					                </div>
+					                
+					              </div>
+					            </div>
+					            
+					          </div>
+			
+						<!--Estado estaciones -->
+						 <div class="card ">
+			                <div class="card-header card-header-primary">
+			                  <h4 class="card-title">Estado de las estaciones de la plataforma wunderground</h4>
+			                </div>
+			                
+			                <div class="card-body">
+			                  <h4 class="card-title">Isantand 30 
+			                  	<span th:if="${status_is30=='Online'}" th:text="${status_is30}" class="badge badge-success"></span>
+			                  	<span th:unless="${status_is30=='Online'}" th:text="${status_is30}" class="badge badge-danger"></span>
+			                  </h4>
+			                  <h4 class="card-title">Isantand 31 
+			                  	<span th:if="${status_is31=='Online'}" th:text="${status_is31}" class="badge badge-success"></span>
+			                  	<span th:unless="${status_is31=='Online'}" th:text="${status_is31}" class="badge badge-danger"></span>
+			                  </h4>
+			                </div>
+			                
+			      		</div>	
+				</div>
+			  </div>
+			</div>
+		</div>
+	 </div>
+	 
 </body>
+<div th:insert="~{layouts/mdbjs::mdbjs}"></div>
 </html>
