@@ -61,7 +61,7 @@
 				        		   <div class="card">
 							          <div class="card-header card-header-text card-header-info">
 							            <div class="card-text">
-							              <h4 class="card-title">Agregar municipio</h4>
+							              <h4 th:text="${municipio.id_municipio} ? 'Actualizar municipio':'Agregar municipio' " class="card-title"></h4>
 							            </div>
 							          </div>
 							          <div class="card-body">
@@ -70,7 +70,8 @@
 													<input th:field="*{id_municipio}" style="display: none;"  type="text" name="id_municipio" >
 													<input th:field="*{nombre}" required="required" type="text" name="nombre" class="form-control"  aria-describedby="emailHelp" placeholder="Escriba el nombre del municipio">
 													<button class="btn btn-default btn-round my-3">
-													  <i class="material-icons mr-2">add</i> Agregar
+													  <i th:text="${municipio.id_municipio} ? 'done':'add' " class="material-icons mr-2"></i> 
+													  <span th:text="${municipio.id_municipio} ? 'Actualizar':'Registrar' "></span>
 													</button>
 											</form>
 							          </div>
