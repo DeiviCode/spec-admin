@@ -48,10 +48,16 @@ public class MunicipioController {
 	}
 	
 	@GetMapping("/edit/{id_municipio}")
-	public String editarMunicipio(Model model, @PathVariable(name = "id_municipio") Long id_municipio) {
-		Municipio municipio = municipioServiceIMPL.findById(id_municipio);
-		model.addAttribute("municipio", municipio);
-		model.addAttribute("municipios", this.getMunicipios());
+	public String editarMunicipio(Model model, @PathVariable(name = "id_municipio") Long id_municipio, RedirectAttributes ra) {
+		try {
+			Municipio municipio = municipioServiceIMPL.findById(id_municipio);
+			model.addAttribute("municipio", municipio);
+			model.addAttribute("municipios", this.getMunicipios());
+		} catch (Exception e) {
+			model.addAttribute("municipio", new Municipio());
+			model.addAttribute("municipios", this.getMunicipios());
+			ra.addFlashAttribute("error", "Es posible que el recurso no exista.");
+		}
 		return "municipios/list";
 	}
 	

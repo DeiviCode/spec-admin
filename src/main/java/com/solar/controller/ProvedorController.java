@@ -50,9 +50,14 @@ public class ProvedorController {
 
 	@GetMapping("/edit/{id_origen}")
 	public String editarMunicipio(Model model, @PathVariable(name = "id_origen") Long id_origen) {
-		Provedor origen = provedorServiceIMPL.findById(id_origen);
-		model.addAttribute("origen", origen);
-		model.addAttribute("origenes", this.getOrigenes());
+		try {
+			Provedor origen = provedorServiceIMPL.findById(id_origen);
+			model.addAttribute("origen", origen);
+			model.addAttribute("origenes", this.getOrigenes());
+		} catch (Exception e) {
+			model.addAttribute("origen", new Provedor());
+			model.addAttribute("origenes", this.getOrigenes());
+		}
 		return "origenes/list";
 	}
 	

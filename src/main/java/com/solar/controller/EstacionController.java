@@ -93,7 +93,7 @@ public class EstacionController {
 	}
 	
 	@GetMapping("/remove/{id_estacion}")
-	public String eliminarMunicipio(Model model, @PathVariable(name = "id_estacion") Integer id_estacion,
+	public String eliminarEstacion(Model model, @PathVariable(name = "id_estacion") Integer id_estacion,
 			RedirectAttributes ar) {
 		try {
 			estacionServiceIMPL.removeById(id_estacion);;
@@ -120,16 +120,28 @@ public class EstacionController {
 	
 	@GetMapping("/edit/{id_estacion}")
 	public String editarMunicipio(Model model, @PathVariable(name = "id_estacion") Integer id_estacion) {
-		Estacion estacion = estacionServiceIMPL.findById(id_estacion);
-		model.addAttribute("id", estacion.getId_estacion());
-		model.addAttribute("nombre", estacion.getNombre());
-		model.addAttribute("lat", estacion.getLat());
-		model.addAttribute("lon", estacion.getLon());
-		model.addAttribute("municipio", estacion.getMunicipio().getNombre());
-		model.addAttribute("origen", estacion.getProveedor().getNombre());
-		model.addAttribute("estaciones", this.getEstaciones());
-		model.addAttribute("municipios", this.getMunicipios());
-		model.addAttribute("origenes", this.getOrigenes());
+		try {
+			Estacion estacion = estacionServiceIMPL.findById(id_estacion);
+			model.addAttribute("id", estacion.getId_estacion());
+			model.addAttribute("nombre", estacion.getNombre());
+			model.addAttribute("lat", estacion.getLat());
+			model.addAttribute("lon", estacion.getLon());
+			model.addAttribute("municipio", estacion.getMunicipio().getNombre());
+			model.addAttribute("origen", estacion.getProveedor().getNombre());
+			model.addAttribute("estaciones", this.getEstaciones());
+			model.addAttribute("municipios", this.getMunicipios());
+			model.addAttribute("origenes", this.getOrigenes());
+		} catch (Exception e) {
+			model.addAttribute("id", "");
+			model.addAttribute("nombre", "");
+			model.addAttribute("lat", "");
+			model.addAttribute("lon","");
+			model.addAttribute("municipio", "");
+			model.addAttribute("origen", "");
+			model.addAttribute("estaciones", this.getEstaciones());
+			model.addAttribute("origenes", this.getOrigenes());
+			model.addAttribute("municipios", this.getMunicipios());
+		}
 		return "estaciones/list";
 	}
 	
