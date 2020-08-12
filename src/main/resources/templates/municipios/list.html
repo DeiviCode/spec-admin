@@ -23,12 +23,68 @@
 	  <!-- Content -->
       <div class="content" >
         <div class="container-fluid">
-			<div layout:fragment="content">
-				
+			<div >
+				 <div >
+				    <div class="card">
+				        <div class="card-header card-header-success">
+				            <h4 class="card-title">Gestión de municipios</h4>
+				        </div>
+				        <div class="card-body">
+				        	<div class="row">
+				        		<div class="col-md-6">
+				        			<table class="table">
+									    <thead>
+									        <tr>
+									            <th class="text-center">#</th>
+									            <th>Nombre</th>
+									            <th class="text-right">Acciones</th>
+									        </tr>
+									    </thead>
+									    <tbody>
+									        <tr th:each="municipio, iStat : ${municipios}">
+									            <td th:text="${iStat.index+1}" class="text-center"></td>
+									            <td th:text="${municipio.getNombre()}"></td>
+									            <td class="td-actions text-right">
+									                <a th:href="@{'/municipios/edit/' + ${municipio.getId_municipio()}}" data-placement="left" title="Editar municipio"  rel="tooltip" class="btn btn-warning btn-simple">
+									                    <i class="material-icons text-white">edit</i>
+									                </a>
+									                <a  th:href="@{'/municipios/remove/' + ${municipio.getId_municipio()}}" data-placement="left" title="Eliminar municipio" rel="tooltip" class="btn btn-danger btn-simple">
+									                    <i class="material-icons text-white">close</i>
+									                </a>
+									            </td>
+									        </tr>
+									    </tbody>
+									</table>
+									<p th:if="${municipios.size() == 0}" class="text-center text-muted">Sin registros.</p>
+				        		</div>
+				        		<div class="col-md-6">
+				        		   <div class="card">
+							          <div class="card-header card-header-text card-header-info">
+							            <div class="card-text">
+							              <h4 class="card-title">Agregar municipio</h4>
+							            </div>
+							          </div>
+							          <div class="card-body">
+							          		 <strong>Nota: </strong> Si elimina un municipio se eliminaran con el todas sus estaciones asociadas.
+											<form th:object="${municipio}" class="has-success" method="post" th:action="@{/municipios}">
+													<input th:field="*{id_municipio}" style="display: none;"  type="text" name="id_municipio" >
+													<input th:field="*{nombre}" required="required" type="text" name="nombre" class="form-control"  aria-describedby="emailHelp" placeholder="Escriba el nombre del municipio">
+													<button class="btn btn-default btn-round my-3">
+													  <i class="material-icons mr-2">add</i> Agregar
+													</button>
+											</form>
+							          </div>
+							        </div>
+				        		</div>
+				        	</div>
+				        </div>
+				    </div>
+				  </div>
+				</div>
 			</div>
 		</div>
 	 </div>
-	 
+	 <div th:insert="~{layouts/mdbjs::mdbjs}"></div>
+	 <div th:insert="~{layouts/notification::notification}"></div>
 </body>
-<div th:insert="~{layouts/mdbjs::mdbjs}"></div>
 </html>
