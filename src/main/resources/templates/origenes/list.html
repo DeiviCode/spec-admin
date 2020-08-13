@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Gestíon de origenes</title>
+  <title>Gestíon de orígenes</title>
   <!-- Required meta tags -->
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -23,12 +23,69 @@
 	  <!-- Content -->
       <div class="content" >
         <div class="container-fluid">
-			<div layout:fragment="content">
-				
+			<div >
+				 <div >
+				    <div class="card">
+				        <div class="card-header card-header-danger">
+				            <h4 class="card-title">Gestión de orígenes</h4>
+				        </div>
+				        <div class="card-body">
+				        	<div class="row">
+				        		<div class="col-md-6">
+				        			<table class="table">
+									    <thead>
+									        <tr>
+									            <th class="text-center">#</th>
+									            <th>Nombre</th>
+									            <th class="text-right">Acciones</th>
+									        </tr>
+									    </thead>
+									    <tbody>
+									        <tr th:each="origen, iStat : ${origenes}">
+									            <td th:text="${iStat.index+1}" class="text-center"></td>
+									            <td th:text="${origen.getNombre()}"></td>
+									            <td class="td-actions text-right">
+									                <a th:href="@{'/origenes/edit/' + ${origen.getId_provedor()}}" data-placement="left" title="Editar orígen"  rel="tooltip" class="btn btn-warning btn-simple">
+									                    <i class="material-icons text-white">edit</i>
+									                </a>
+									                <a  th:href="@{'/origenes/remove/' + ${origen.getId_provedor()}}" data-placement="left" title="Eliminar orígen" rel="tooltip" class="btn btn-danger btn-simple">
+									                    <i class="material-icons text-white">close</i>
+									                </a>
+									            </td>
+									        </tr>
+									    </tbody>
+									</table>
+									<p th:if="${origenes.size() == 0}" class="text-center text-muted">Sin registros.</p>
+				        		</div>
+				        		<div class="col-md-6">
+				        		   <div class="card">
+							          <div class="card-header card-header-text card-header-info">
+							            <div class="card-text">
+							              <h4 th:text="${origen.id_provedor} ? 'Actualizar orígen':'Agregar orígen' " class="card-title"></h4>
+							            </div>
+							          </div>
+							          <div class="card-body">
+							          		 <strong>Nota: </strong> Si elimina un orígen se eliminaran con el todas sus estaciones asociadas.
+											<form th:object="${origen}" class="has-success" method="post" th:action="@{/origenes}">
+													<input th:field="*{id_provedor}" style="display: none;"  type="text" name="id_provedor" >
+													<input th:field="*{nombre}" required="required" type="text" name="nombre" class="form-control"  aria-describedby="emailHelp" placeholder="Escriba el nombre del orígen">
+													<button class="btn btn-default btn-round my-3">
+													  <i th:text="${origen.id_provedor} ? 'done':'add' " class="material-icons mr-2"></i> 
+													  <span th:text="${origen.id_provedor} ? 'Actualizar':'Registrar' "></span>
+													</button>
+											</form>
+							          </div>
+							        </div>
+				        		</div>
+				        	</div>
+				        </div>
+				    </div>
+				  </div>
+				</div>
 			</div>
 		</div>
 	 </div>
-	 
+	 <div th:insert="~{layouts/mdbjs::mdbjs}"></div>
+	 <div th:insert="~{layouts/notification::notification}"></div>
 </body>
-<div th:insert="~{layouts/mdbjs::mdbjs}"></div>
 </html>

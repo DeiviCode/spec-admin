@@ -24,11 +24,95 @@
       <div class="content" >
         <div class="container-fluid">
 			<div layout:fragment="content">
-				
+				   <div class="card">
+				        <div class="card-header card-header-warning">
+				            <h4 class="card-title">Gestión de estaciones</h4>
+				        </div>
+				        <div class="card-body">
+				        	<div class="row">
+				        		<div class="col-md-6 ">
+				        			<div class="table-responsive">
+				        				<table class="table">
+										    <thead>
+										        <tr>
+										            <th class="text-center">#</th>
+										            <th>Nombre</th>
+										            <th>Lat</th>
+										            <th>Long</th>
+										            <th>Municipio</th>
+										            <th>Orígen</th>
+										            <th class="text-right">Acciones</th>
+										        </tr>
+										    </thead>
+										    <tbody>
+										        <tr th:each="estacion, iStat : ${estaciones}">
+										            <td th:text="${iStat.index+1}" class="text-center"></td>
+										            <td th:text="${estacion.getNombre()}"></td>
+										            <td th:text="${estacion.getLat()}"></td>
+										            <td th:text="${estacion.getLon()}"></td>
+										            <td th:text="${estacion.getMunicipio().getNombre()}"></td>
+										            <td th:text="${estacion.getProveedor().getNombre()}"></td>
+										            <td class="td-actions text-right">
+										                <a th:href="@{'/estaciones/edit/' + ${estacion.getId_estacion()}}" data-placement="left" title="Editar estación"  rel="tooltip" class="btn btn-warning btn-simple">
+										                    <i class="material-icons text-white">edit</i>
+										                </a>
+										                <a  th:href="@{'/estaciones/remove/' + ${estacion.getId_estacion()}}" data-placement="left" title="Eliminar estación" rel="tooltip" class="btn btn-danger btn-simple">
+										                    <i class="material-icons text-white">close</i>
+										                </a>
+										            </td>
+										        </tr>
+										    </tbody>
+										</table>
+				        			</div>
+									<p th:if="${estaciones.size() == 0}" class="text-center text-muted">Sin registros.</p>
+				        		</div>
+				        		<div class="col-md-6">
+				        		   <div class="card">
+							          <div class="card-header card-header-text card-header-info">
+							            <div class="card-text">
+							              <h4 th:text="${id != ''} ? 'Actualizar estación':'Agregar estación' " class="card-title"></h4>
+							            </div>
+							          </div>
+							          <div class="card-body">
+							          		 <strong>Nota: </strong> Si elimina una estación se eliminaran con ella todos sus registros de radiación relacionados.
+											<form  class="has-success" method="post" th:action="@{/estaciones}">
+													<input th:value="${id}" style="display: none;"  type="text" name="id" >
+													<input th:value="${nombre}"  required="required" type="text" name="nombre" class="form-control"  aria-describedby="emailHelp" placeholder="Escriba el nombre dela estación">
+													<input th:value="${lat}"  required="required" type="text" name="lat" class="form-control"  aria-describedby="emailHelp" placeholder="Escriba la latitud">
+													<input th:value="${lon}"  required="required" type="text" name="lon" class="form-control"  aria-describedby="emailHelp" placeholder="Escriba la longitud">
+													
+													<select  required class="browser-default custom-select mb-2 mt-2" name="origen">
+													   <option value="" >Seleccione la entidad de orígen</option>
+													   <option th:each="ori: ${origenes}" th:value="${ori.getNombre()}"
+													   		   th:label="${ori.getNombre()}">
+													   </option>
+													</select>
+													<p>¿No encuentras el orígen? <a href="/origenes">registra uno nuevo</a></p>
+													
+													<select  required class="browser-default custom-select mb-2" name="municipio">
+													   <option value="" >Seleccione el municipio</option>
+													   <option th:each="municipio: ${municipios}" th:value="${municipio.getNombre()}"
+													   		   th:label="${municipio.getNombre()}">
+													   </option>
+													</select>
+													<p>¿No encuentras el municipio? <a href="/municipios">registra uno nuevo</a></p>
+													
+													<button type="submit" class="btn btn-default btn-round my-3">
+													  <i th:text="${id != ''} ? 'done':'add' " class="material-icons mr-2"></i> 
+													  <span th:text="${id != ''} ? 'Actualizar':'Registrar' "></span>
+													</button>
+											</form>
+							          </div>
+							        </div>
+				        		</div>
+				        	</div>
+				        </div>
+				    </div>
 			</div>
 		</div>
 	 </div>
-	 
+	 <div th:insert="~{layouts/mdbjs::mdbjs}"></div>
+	 <div th:insert="~{layouts/notification::notification}"></div>
 </body>
-<div th:insert="~{layouts/mdbjs::mdbjs}"></div>
+
 </html>

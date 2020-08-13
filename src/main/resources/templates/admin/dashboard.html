@@ -82,9 +82,8 @@
 											
 						               		<select  required class="browser-default custom-select" name="estacion">
 											   <option value = "">Seleccione una estación</option>
-											   <option value = "d">Seleccione una estación</option>
-											   <option th:each="estacion: ${estaciones}" th:value="${estacion.getNomber()}"
-											   		   th:label="${estacion.getNomber()}">
+											   <option th:each="estacion: ${estaciones}" th:value="${estacion.getNombre()}"
+											   		   th:label="${estacion.getNombre()}">
 											   </option>
 											</select>
 											<p>¿No encuentras la estación? <a href="/estaciones">registra una nueva</a></p>
@@ -125,8 +124,8 @@
 						        	<select  required class="browser-default custom-select my-2" name="estacion">
 												   <option value = "">Seleccione una estación</option>
 												   <option value = "all_stations">Todas</option>
-												   <option th:each="estacion: ${estaciones}" th:value="${estacion.getNomber()}"
-												   		   th:label="${estacion.getNomber()}">
+												   <option th:each="estacion: ${estaciones}" th:value="${estacion.getNombre()}"
+												   		   th:label="${estacion.getNombre()}">
 												   </option>
 								</select>
 						        <button type="submit" class="btn btn-default">Descargar</button>
