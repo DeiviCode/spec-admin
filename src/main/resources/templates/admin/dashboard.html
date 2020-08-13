@@ -96,7 +96,7 @@
 						                </div>
 						                
 						            
-							             <div class="text-center">
+							             <div id="btn_import" class="text-center">
 							              <button type="submit" onclick="showLoader()" class="btn btn-success btn-round">Importar</button>
 							            </div>
 					              </form>
@@ -261,6 +261,7 @@
 		function showLoader() {
 			if ($('#importForm').is(':invalid') == 0) {
 				document.getElementById("loader").style.display = "block";
+				document.getElementById("btn_import").style.display = "none";
 			}
 		}
 	</script>
