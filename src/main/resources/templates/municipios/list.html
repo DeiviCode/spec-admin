@@ -8,6 +8,7 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <div th:insert="~{layouts/mdbcss::mdbcss}"></div>
+  <div th:insert="~{layouts/flex::flex}"></div>
 </head>
 
 <body>
@@ -44,13 +45,23 @@
 									        <tr th:each="municipio, iStat : ${municipios}">
 									            <td th:text="${iStat.index+1}" class="text-center"></td>
 									            <td th:text="${municipio.getNombre()}"></td>
-									            <td class="td-actions text-right">
+									            <td th:if="${municipio.getNombre() != 'Bucaramanga'}" class="td-actions text-right">
 									                <a th:href="@{'/municipios/edit/' + ${municipio.getId_municipio()}}" data-placement="left" title="Editar municipio"  rel="tooltip" class="btn btn-warning btn-simple">
 									                    <i class="material-icons text-white">edit</i>
 									                </a>
 									                <a  th:href="@{'/municipios/remove/' + ${municipio.getId_municipio()}}" data-placement="left" title="Eliminar municipio" rel="tooltip" class="btn btn-danger btn-simple">
 									                    <i class="material-icons text-white">close</i>
 									                </a>
+									            </td>
+									             <td th:unless="${municipio.getNombre() != 'Bucaramanga'}">
+										            <div class="row end-xs">
+													    <div style="width: 200px;" class="col-xs-6">
+													        <div class="box">
+													            <span class="">No se debe editar</span>
+													        </div>
+													    </div>
+													</div>
+									            	
 									            </td>
 									        </tr>
 									    </tbody>
