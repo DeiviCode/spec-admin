@@ -5,11 +5,12 @@
 	<title>Login</title>
 	<link rel="stylesheet" type="text/css" th:href="@{css/admin.css}">
 	<div th:insert="~{layouts/css::css}"></div>
+	<link rel="stylesheet" type="text/css" th:href="@{css/loader.css}">
 </head>
 <body>
 	<div class="row center-xs container-fluid my-5">
 		<!-- Default form login -->
-		<form class="text-center border border-light p-5" th:action="@{/login}" method="post" style="width:500px">
+		<form onsubmit="showLoader()" id="loginForm" class="text-center border border-light p-5" th:action="@{/login}" method="post" style="width:500px">
 			<img  id="logo" class="my-2" width="120" height="120" alt="Logo SPEC" th:src="@{images/logosemillero.png}">
 		    <h3 class="mb-4">Base de datos de radiación solar del Área Metropolitana de Bucaramanga</h3>
 		
@@ -19,8 +20,13 @@
 		    <!-- Password -->
 		    <input type="password" id="password" name="password" class="form-control mb-4" placeholder="Contraseña" required="required">
 		
+			<!-- loader -->
+			<div id="loader" style="display: none;" class="text-center my-1">
+					<div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+			</div>
+			
 		    <!-- Sign in button -->
-		    <button class="btn btn-info btn-block " type="submit">Iniciar sesión</button>
+		    <button onclick="showLoader()" id="btn_login" class="btn btn-info btn-block " type="submit">Iniciar sesión</button>
 		    
 		    <div th:if="${param.error}" class="alert alert-danger mt-2" role="alert">    
                  Credenciales incorrectas
@@ -33,5 +39,13 @@
 		<!-- Default form login -->
 	</div>
 	<div th:insert="~{layouts/js::js}"></div>
+	<script>
+		function showLoader() {
+			if ($('#loginForm').is(':invalid') == 0) {
+				document.getElementById("loader").style.display = "block";
+				document.getElementById("btn_login").style.display = "none";
+			}
+		}
+	</script>
 </body>
 </html>
