@@ -94,7 +94,8 @@
 													
 													<select  required class="browser-default custom-select mb-2 mt-2" name="origen">
 													   <option value="" >Seleccione la entidad de orígen</option>
-													   <option th:each="ori: ${origenes}" th:value="${ori.getNombre()}"
+													   <option th:attrappend="selected=${origen == ori.getNombre()}?selected"
+													    th:each="ori: ${origenes}" th:value="${ori.getNombre()}"
 													   		   th:label="${ori.getNombre()}">
 													   </option>
 													</select>
@@ -102,8 +103,9 @@
 													
 													<select  required class="browser-default custom-select mb-2" name="municipio">
 													   <option value="" >Seleccione el municipio</option>
-													   <option th:each="municipio: ${municipios}" th:value="${municipio.getNombre()}"
-													   		   th:label="${municipio.getNombre()}">
+													   <option th:attrappend="selected=${municipio == muni.getNombre()}?selected"
+													   		   th:each="muni: ${municipios}" th:value="${muni.getNombre()}"
+													   		   th:label="${muni.getNombre()}">
 													   </option>
 													</select>
 													<p>¿No encuentras el municipio? <a href="/municipios">registra uno nuevo</a></p>
