@@ -83,7 +83,7 @@ public class EstacionController {
 				}
 			}
 			else {// si las coordenadas no son validas
-				ra.addFlashAttribute("error", "Coordernadas no validas. Las coordernadas escritas no pertenecen al departamento de Santander.");
+				ra.addFlashAttribute("error", "Coordernadas no validas. Las coordernadas escritas no pertenecen al Área Metropolitana de Bucaramanga.");
 			}
 			
 		} catch (Exception e) {
