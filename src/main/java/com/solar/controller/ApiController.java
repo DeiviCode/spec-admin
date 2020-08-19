@@ -53,6 +53,23 @@ public class ApiController {
 		
 	}
 	
+	
+	@SuppressWarnings("unchecked")
+	@GetMapping("/getRadiacionByRangeDate/{date_start}/{date_end}")
+	public List<RadiacionInfo> getRadiacionByRangeDate(@PathVariable(name = "date_start") String date_start, 
+			@PathVariable(name = "date_end") String date_end) throws RestException {
+		try {
+			Query query = em.createNativeQuery("select * from GET_RADIACION_BY_RANGE_DATE(:date_start,:date_end);", RadiacionInfo.class);
+			query.setParameter("date_start", Timestamp.valueOf(date_start), TemporalType.DATE);
+			query.setParameter("date_end", Timestamp.valueOf(date_end), TemporalType.DATE);
+			return (List<RadiacionInfo>) query.getResultList();
+		} catch (Exception e) {
+			throw  new RestException("Asegurese de escribir el siguiente formato: yyyy-mm-dd hh:mm:ss. Error: "+e.getMessage());
+		}
+		
+	}
+	
+	
 	@SuppressWarnings("unchecked")
 	@GetMapping("/getRadiacionByDate/{date}")
 	public List<RadiacionInfo> getRadiacionByDate(@PathVariable(name = "date") String date) throws RestException {
