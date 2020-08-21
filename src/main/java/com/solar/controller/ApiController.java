@@ -59,6 +59,7 @@ public class ApiController {
 	public List<RadiacionInfo> getRadiacionByRangeDate(@PathVariable(name = "date_start") String date_start, 
 			@PathVariable(name = "date_end") String date_end) throws RestException {
 		try {
+			System.out.println("Rango " + date_start + " - " + date_end);
 			Query query = em.createNativeQuery("select * from GET_RADIACION_BY_RANGE_DATE(:date_start,:date_end);", RadiacionInfo.class);
 			query.setParameter("date_start", Timestamp.valueOf(date_start), TemporalType.DATE);
 			query.setParameter("date_end", Timestamp.valueOf(date_end), TemporalType.DATE);
@@ -74,10 +75,14 @@ public class ApiController {
 	@GetMapping("/getRadiacionByDate/{date}")
 	public List<RadiacionInfo> getRadiacionByDate(@PathVariable(name = "date") String date) throws RestException {
 		try {
-			System.out.println(date);
+			System.out.println("Espesifica "+ date);
 			Query query = em.createNativeQuery("select * from GET_RADIACION_BY_DATE(:date);", RadiacionInfo.class);
 			query.setParameter("date", Timestamp.valueOf(date), TemporalType.DATE);
-			return (List<RadiacionInfo>) query.getResultList();
+			List<RadiacionInfo> data = (List<RadiacionInfo>) query.getResultList();
+			for(RadiacionInfo ri : data) {
+				System.out.println(ri.getFecha());
+			}
+			return data;
 		} catch (Exception e) {
 			throw  new RestException("Asegurese de escribir el siguiente formato: yyyy-mm-dd hh:mm:ss. Error: "+e.getMessage());
 		}
