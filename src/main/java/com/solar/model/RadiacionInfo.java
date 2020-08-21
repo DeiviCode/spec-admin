@@ -1,6 +1,9 @@
 package com.solar.model;
 
 import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Immutable;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 
 //@SqlResultSetMapping(name = "RadiacionInfo", classes = {
@@ -41,12 +46,12 @@ public class RadiacionInfo {
 	@Column(name = "Radiacion")
 	private Double radiacion;
 	@Column(name = "Fecha")
-	private Timestamp fecha;
+	private LocalDateTime fecha;
 	
 
 
 	public RadiacionInfo(Integer id, String estacion, String municipio, String origen, Double lat, Double lon,
-			Double radiacion, Timestamp fecha) {
+			Double radiacion, LocalDateTime fecha) {
 		super();
 		this.id = id;
 		this.estacion = estacion;
@@ -150,13 +155,13 @@ public class RadiacionInfo {
 
 
 
-	public Timestamp getFecha() {
+	public LocalDateTime getFecha() {
 		return fecha;
 	}
 
 
 
-	public void setFecha(Timestamp fecha) {
+	public void setFecha(LocalDateTime fecha) {
 		this.fecha = fecha;
 	}
 	
