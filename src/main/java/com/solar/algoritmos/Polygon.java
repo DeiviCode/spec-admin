@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.solar.windingnumber;
+package com.solar.algoritmos;
 import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -12,18 +12,11 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import org.json.*;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 
-/**
- *
- * @author teleupb
- * @source http://geomalgorithms.com/a03-_inclusion.html#wn_PnPoly()
- * @dependencies org.json -> https://mvnrepository.com/artifact/org.json/json/20200518
- *
- */
 
-@Service
+
+@Component
 public class Polygon {
     private Point[] points;
 

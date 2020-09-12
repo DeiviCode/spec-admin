@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.solar.algoritmos.Point;
+import com.solar.algoritmos.Polygon;
 import com.solar.model.Estacion;
 import com.solar.model.Municipio;
 import com.solar.model.Provedor;
 import com.solar.service.EstacionServiceIMPL;
 import com.solar.service.MunicipioServiceIMPL;
 import com.solar.service.ProvedorServiceIMPL;
-import com.solar.windingnumber.Point;
-import com.solar.windingnumber.Polygon;
 
 @Controller
 @RequestMapping("/estaciones")
