@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.solar.algoritmos;
+import com.solar.algoritmos.Point;
 import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -11,12 +12,10 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import org.json.*;
-import org.springframework.stereotype.Component;
 
 
 
 
-@Component
 public class Polygon {
     private Point[] points;
 
@@ -63,6 +62,7 @@ public class Polygon {
     }
     return wn;
     }
+    
     private void start() throws FileNotFoundException, IOException, URISyntaxException{
     	URI uri = ClassLoader.getSystemResource("Metropolitana.border.geo.json").toURI();
     	String mainPath = Paths.get(uri).toString();

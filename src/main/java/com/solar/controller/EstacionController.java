@@ -1,6 +1,8 @@
 package com.solar.controller;
 
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.List;
 
 
@@ -23,6 +25,8 @@ import com.solar.service.EstacionServiceIMPL;
 import com.solar.service.MunicipioServiceIMPL;
 import com.solar.service.ProvedorServiceIMPL;
 
+
+
 @Controller
 @RequestMapping("/estaciones")
 public class EstacionController {
@@ -38,8 +42,7 @@ public class EstacionController {
 	@Autowired
 	private ProvedorServiceIMPL provedorServiceIMPL;
 	
-	@Autowired
-	private Polygon windingNumber;
+	
 	
 	@PostMapping
 	public String saveEstacion(@RequestParam(name = "nombre") String nombre, @RequestParam(name = "municipio") String municipio, 
@@ -157,8 +160,9 @@ public class EstacionController {
 		return municipioServiceIMPL.list();
 	}
 	
-	private int locationIsValid(Point point) {
+	private int locationIsValid(Point point) throws IOException, URISyntaxException {
 		int isValid = 1;
+		Polygon windingNumber = new Polygon();
 		if(windingNumber.inPolygon(point) == 0) {
 			isValid = 0;
 		}
