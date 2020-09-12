@@ -12,6 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import org.json.*;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 
 /**
@@ -22,7 +23,7 @@ import org.springframework.stereotype.Component;
  *
  */
 
-@Component
+@Service
 public class Polygon {
     private Point[] points;
 
