@@ -35,8 +35,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		@SuppressWarnings("deprecation")
 		UserDetails user =
 			 User.withDefaultPasswordEncoder()
-				.username("user")
-				.password("password")
+				.username("Solar-admin")
+				.password("SPEC2050-ADMIN")
 				.roles("USER")
 				.build();
 
