@@ -48,7 +48,7 @@ public class EstacionController {
 	public String saveEstacion(@RequestParam(name = "nombre") String nombre, @RequestParam(name = "municipio") String municipio, 
 			@RequestParam(name = "origen") String origen, RedirectAttributes ra, @RequestParam(name = "lat") String lat,
 			@RequestParam(name = "lon") String lon, @RequestParam(name = "id") String id) {
-		try {
+		
 			Double latitude = 0.0;
 			Double longitude = 0.0;
 			
@@ -89,9 +89,7 @@ public class EstacionController {
 				ra.addFlashAttribute("error", "Coordernadas no validas. Las coordernadas escritas no pertenecen al Área Metropolitana de Bucaramanga.");
 			}
 			
-		} catch (Exception e) {
-			ra.addFlashAttribute("error", "No se pudo registrar la estación "+e.getCause());
-		}
+		
 		return "redirect:/estaciones";
 	}
 	
