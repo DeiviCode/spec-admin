@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package com.solar.algoritmos;
-import com.solar.algoritmos.Point;
 import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
