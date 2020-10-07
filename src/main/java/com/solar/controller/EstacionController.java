@@ -47,7 +47,7 @@ public class EstacionController {
 	@PostMapping
 	public String saveEstacion(@RequestParam(name = "nombre") String nombre, @RequestParam(name = "municipio") String municipio, 
 			@RequestParam(name = "origen") String origen, RedirectAttributes ra, @RequestParam(name = "lat") String lat,
-			@RequestParam(name = "lon") String lon, @RequestParam(name = "id") String id) {
+			@RequestParam(name = "lon") String lon, @RequestParam(name = "id") String id) throws NumberFormatException, IOException, URISyntaxException {
 		
 			Double latitude = 0.0;
 			Double longitude = 0.0;
