@@ -75,6 +75,7 @@ public class WundergroundService {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			System.out.println(e.getCause());
+			System.out.println("Error: " + e);
 		}
 	}
 	

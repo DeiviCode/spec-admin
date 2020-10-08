@@ -1,10 +1,6 @@
 package com.solar.model;
 
-import java.sql.Timestamp;
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +10,6 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Immutable;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 
 //@SqlResultSetMapping(name = "RadiacionInfo", classes = {

@@ -79,9 +79,6 @@ public class ApiController {
 			Query query = em.createNativeQuery("select * from GET_RADIACION_BY_DATE(:date);", RadiacionInfo.class);
 			query.setParameter("date", Timestamp.valueOf(date), TemporalType.DATE);
 			List<RadiacionInfo> data = (List<RadiacionInfo>) query.getResultList();
-			for(RadiacionInfo ri : data) {
-				System.out.println(ri.getFecha());
-			}
 			return data;
 		} catch (Exception e) {
 			throw  new RestException("Asegurese de escribir el siguiente formato: yyyy-mm-dd hh:mm:ss. Error: "+e.getMessage());
