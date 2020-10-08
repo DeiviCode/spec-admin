@@ -1,5 +1,7 @@
 package com.solar.controller;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.List;
 
 
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.solar.algoritmos.Point;
+import com.solar.algoritmos.Polygon;
 import com.solar.model.Estacion;
 import com.solar.model.Municipio;
 import com.solar.model.Provedor;
@@ -56,7 +60,7 @@ public class EstacionController {
 			}
 			
 			// si las coordernadas son validas
-			//if(this.locationIsValid(new Point(longitude,latitude )) == 1) {
+			if(this.locationIsValid(new Point(longitude,latitude )) == 1) {
 				// es una estacioón nueva
 				if (id.equals("")) {
 					Municipio municipioExist = municipioServiceIMPL.findByNombre(municipio);
@@ -79,10 +83,10 @@ public class EstacionController {
 					estacionServiceIMPL.save(estacionExist);
 					ra.addFlashAttribute("ok", "Estacion actualizada");
 				}
-			//}
-//			else {// si las coordenadas no son validas
-//				ra.addFlashAttribute("error", "Coordernadas no validas. Las coordernadas escritas no pertenecen al Área Metropolitana de Bucaramanga.");
-//			}
+			}
+			else {// si las coordenadas no son validas
+				ra.addFlashAttribute("error", "Coordernadas no validas. Las coordernadas escritas no pertenecen al Área Metropolitana de Bucaramanga.");
+			}
 			
 		} catch (Exception e) {
 			ra.addFlashAttribute("error", "No se pudo registrar la estación "+e.getCause());
@@ -155,12 +159,12 @@ public class EstacionController {
 		return municipioServiceIMPL.list();
 	}
 	
-//	private int locationIsValid(Point point) throws IOException, URISyntaxException {
-//		int isValid = 1;
-//		Polygon windingNumber = new Polygon();
-//		if(windingNumber.inPolygon(point) == 0) {
-//			isValid = 0;
-//		}
-//		return isValid;
-//	}
+	private int locationIsValid(Point point) throws IOException, URISyntaxException {
+		int isValid = 1;
+		Polygon windingNumber = new Polygon();
+		if(windingNumber.inPolygon(point) == 0) {
+			isValid = 0;
+		}
+		return isValid;
+	}
 }
