@@ -7,9 +7,9 @@ package com.solar.algoritmos;
 import java.io.*;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import org.json.*;
-import org.springframework.util.ResourceUtils;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.util.FileCopyUtils;
 
 
 
@@ -62,10 +62,12 @@ public class Polygon {
     }
     
     private void start() throws FileNotFoundException, IOException, URISyntaxException{
-    	File file = ResourceUtils.getFile(
-    		      "classpath:Metropolitana.border.geo.json");
-        String text = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
-        JSONObject obj = new JSONObject(text);
+    	String polygon = "";
+    	ClassPathResource classPathResource = new ClassPathResource("static/Metropolitana.border.geo.json");
+        //String text = new String(Files.readAllBytes(classPathResource.getInputStream())), StandardCharsets.UTF_8);
+        byte[] bdata = FileCopyUtils.copyToByteArray(classPathResource.getInputStream());
+        polygon = new String(bdata, StandardCharsets.UTF_8);
+        JSONObject obj = new JSONObject(polygon);
         
         JSONArray array = obj.getJSONArray("geometries")
                 .getJSONObject(0)
