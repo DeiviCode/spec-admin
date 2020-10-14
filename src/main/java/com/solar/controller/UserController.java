@@ -100,8 +100,14 @@ public class UserController {
 		String uri_31 = "https://api.weather.com/v2/pws/observations/all/1day?stationId=ISANTAND31&format=json&units=e&apiKey=b3bc2e2c48a644b6bc2e2c48a614b691";
 		RestTemplate restTemplate = new RestTemplate();
 		
-		HttpStatus status_30 = restTemplate.exchange(uri_30, HttpMethod.GET,null, WundergroundService.class).getStatusCode();
-		HttpStatus status_31 = restTemplate.exchange(uri_31, HttpMethod.GET,null, WundergroundService.class).getStatusCode();
+		HttpStatus status_30 = HttpStatus.UNAUTHORIZED;
+		HttpStatus status_31 = HttpStatus.UNAUTHORIZED;
+		try {
+			status_30= restTemplate.exchange(uri_30, HttpMethod.GET,null, WundergroundService.class).getStatusCode();
+			status_31= restTemplate.exchange(uri_31, HttpMethod.GET,null, WundergroundService.class).getStatusCode();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 		
 		model.addAttribute("status_is30", (status_30.equals(HttpStatus.OK)) ? "Online":"Offline");
 		model.addAttribute("status_is31",  (status_31.equals(HttpStatus.OK)) ? "Online":"Offline");
