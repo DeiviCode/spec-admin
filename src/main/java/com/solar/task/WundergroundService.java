@@ -32,8 +32,8 @@ public class WundergroundService {
 	@Autowired
 	private EstacionServiceIMPL  estacionServiceIMPL;
 
-	// Run at 11:55 PM
-	@Scheduled(cron="0 55 11 * * ?" )
+	// Run at 8:00 PM
+	@Scheduled(cron="0 0 20 * * ?" )
 	public void getDataFromISANTAND30() {
 		System.out.println("Ejecutando para isantand 30, hora: "+LocalDate.now());
 		try {
@@ -79,8 +79,8 @@ public class WundergroundService {
 		}
 	}
 	
-	// Run at 12:00 PM
-	@Scheduled(cron="0 0 12 * * ?")
+	// Run at 8:05 PM
+	@Scheduled(cron="0 5 20 * * ?")
 	public void getDataFromISANTAND31() {
 		System.out.println("Ejecutando servicio  para isantand 31, hora: "+LocalDate.now());
 		try {
