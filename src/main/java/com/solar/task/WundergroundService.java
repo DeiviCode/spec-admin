@@ -32,10 +32,10 @@ public class WundergroundService {
 	@Autowired
 	private EstacionServiceIMPL  estacionServiceIMPL;
 
-	// cada día
-	@Scheduled(fixedDelay = 86400000, initialDelay = 86400000 )
+	// Run at 11:55 PM
+	@Scheduled(cron="0 55 11 * * ?" )
 	public void getDataFromISANTAND30() {
-		System.out.println("Ejecutando para isantand 30!");
+		System.out.println("Ejecutando para isantand 30, hora: "+LocalDate.now());
 		try {
 			String date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
 			String uri = "https://api.weather.com/v2/pws/history/hourly?stationId=ISANTAND30&format=json&units=m&date="+date+"&apiKey=b3bc2e2c48a644b6bc2e2c48a614b691";
@@ -79,10 +79,10 @@ public class WundergroundService {
 		}
 	}
 	
-	// cada 1.005 dia
-	@Scheduled(fixedDelay = 86832000, initialDelay = 86832000)
+	// Run at 12:00 PM
+	@Scheduled(cron="0 0 12 * * ?")
 	public void getDataFromISANTAND31() {
-		System.out.println("Ejecutando servicio  para isantand 31!");
+		System.out.println("Ejecutando servicio  para isantand 31, hora: "+LocalDate.now());
 		try {
 			String date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
 			String uri = "https://api.weather.com/v2/pws/history/hourly?stationId=ISANTAND31&format=json&units=m&date="+date+"&apiKey=b3bc2e2c48a644b6bc2e2c48a614b691";
