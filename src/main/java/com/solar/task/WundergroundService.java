@@ -33,7 +33,7 @@ public class WundergroundService {
 	private EstacionServiceIMPL  estacionServiceIMPL;
 
 	// cada día
-	@Scheduled(fixedRate = 86400000 )
+	@Scheduled(fixedDelay = 86400000, initialDelay = 86400000 )
 	public void getDataFromISANTAND30() {
 		System.out.println("Ejecutando para isantand 30!");
 		try {
@@ -80,7 +80,7 @@ public class WundergroundService {
 	}
 	
 	// cada 1.005 dia
-	@Scheduled(fixedRate = 86832000 )
+	@Scheduled(fixedDelay = 86832000, initialDelay = 86832000)
 	public void getDataFromISANTAND31() {
 		System.out.println("Ejecutando servicio  para isantand 31!");
 		try {
